@@ -225,6 +225,12 @@ The maximum payload size for an entire envelopes. Individual limits still apply.
 
 The maximum number of session items per envelope.
 
+### `limits.max_measurement_count`
+
+_Integer, default: `100`_
+
+The maximum number of measurement items per envelope.
+
 ### `limits.max_api_payload_size`
 
 *String, default: `20MiB`*
