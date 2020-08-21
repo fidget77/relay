@@ -298,10 +298,6 @@ impl EventProcessor {
             None => return Ok(()),
         };
 
-        let envelope = &mut state.envelope;
-
-        let mut measures_context = MeasuresContext::default();
-
         if !is_transaction {
             match event.contexts.value_mut() {
                 None => {}
@@ -313,6 +309,9 @@ impl EventProcessor {
             return Ok(());
         }
 
+        let envelope = &mut state.envelope;
+
+        let mut measures_context = MeasuresContext::default();
         loop {
             let measure_item = envelope.take_item_by(|item| item.ty() == ItemType::Measures);
 
