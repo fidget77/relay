@@ -291,6 +291,8 @@ impl EventProcessor {
     fn process_measures(&self, state: &mut ProcessEnvelopeState) -> Result<(), ProcessingError> {
         use relay_general::protocol::{Context, Contexts};
 
+        log::trace!("processing measures");
+
         let is_transaction = state.event_type() == Some(EventType::Transaction);
 
         let event = match state.event.value_mut() {
@@ -332,6 +334,8 @@ impl EventProcessor {
         }
 
         let contexts = event.contexts.value_mut().get_or_insert_with(Contexts::new);
+
+        log::trace!("adding measures context");
 
         contexts.add(Context::Measures(Box::new(measures_context)));
 
