@@ -288,7 +288,10 @@ impl EventProcessor {
     }
 
     /// Validates any and all measures in the envelope.
-    fn process_measures(&self, state: &mut ProcessEnvelopeState) -> Result<(), ProcessingError> {
+    fn process_measurements(
+        &self,
+        state: &mut ProcessEnvelopeState,
+    ) -> Result<(), ProcessingError> {
         log::trace!("processing measures");
 
         let is_transaction = state.event_type() == Some(EventType::Transaction);
@@ -1149,7 +1152,7 @@ impl EventProcessor {
                 self.create_placeholders(&mut state)?;
             });
 
-            self.process_measures(&mut state)?;
+            self.process_measurements(&mut state)?;
 
             self.finalize_event(&mut state)?;
 
